@@ -1,0 +1,27 @@
+{
+  "name": "one-on-one-companion",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A Notion-inspired tool for meaningful 1:1 conversations between Leaders and Individual Contributors",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:web\"",
+    "dev:api": "npm run dev --workspace=@one-on-one/api",
+    "dev:web": "npm run dev --workspace=@one-on-one/web",
+    "build": "npm run build --workspaces",
+    "build:api": "npm run build --workspace=@one-on-one/api",
+    "build:web": "npm run build --workspace=@one-on-one/web",
+    "db:migrate": "npm run db:migrate --workspace=@one-on-one/api",
+    "db:studio": "npm run db:studio --workspace=@one-on-one/api",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

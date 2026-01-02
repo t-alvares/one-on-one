@@ -1,0 +1,197 @@
+/**
+ * BlockNote Editor Custom Styles
+ */
+
+/* Override BlockNote CSS variables for placeholder */
+.blocknote-editor,
+.bn-editor,
+.bn-container {
+  --bn-font-size: 1rem;
+}
+
+/* Subtle placeholder text - targeting all possible BlockNote/ProseMirror selectors */
+.blocknote-editor .bn-block-content[data-is-empty-and-focused="true"]::before,
+.blocknote-editor .bn-block-content[data-content-type="paragraph"][data-is-empty-and-focused="true"]::before,
+.blocknote-editor [data-placeholder]::before,
+.blocknote-editor .bn-inline-content::before,
+.blocknote-editor .ProseMirror p.is-empty::before,
+.blocknote-editor .ProseMirror .is-editor-empty:first-child::before,
+[data-node-type="blockContainer"] [data-placeholder]::before,
+.bn-editor [data-placeholder]::before,
+.bn-container [data-placeholder]::before {
+  color: #d1d5db !important;
+  font-weight: 300 !important;
+  font-style: normal !important;
+  font-size: 0.8125rem !important; /* 13px - smaller placeholder */
+}
+
+/* Target the inline content placeholder specifically */
+.blocknote-editor .bn-inline-content[data-placeholder]::before,
+.bn-inline-content[data-placeholder]::before {
+  font-size: 0.8125rem !important;
+  color: #d1d5db !important;
+  font-weight: 300 !important;
+}
+
+/* Make placeholder even more subtle when not focused */
+.blocknote-editor .bn-block-content:not([data-is-empty-and-focused="true"])[data-is-empty="true"]::before {
+  color: #e5e7eb !important;
+}
+
+/* High specificity catch-all for placeholder text */
+div.blocknote-editor div[data-placeholder]::before,
+div.blocknote-editor span[data-placeholder]::before,
+div.blocknote-editor p[data-placeholder]::before,
+div.blocknote-editor [class*="bn-"][data-placeholder]::before,
+[data-placeholder="Enter text or type '/' for commands"]::before {
+  font-size: 0.8125rem !important;
+  color: #d1d5db !important;
+  font-weight: 300 !important;
+}
+
+/* Target placeholder elements only (NOT actual content) */
+.blocknote-editor [data-placeholder]:empty,
+.blocknote-editor [class*="placeholder"]:empty,
+.bn-editor [data-placeholder]:empty {
+  font-size: 0.8125rem !important;
+}
+
+/* Mantine-specific placeholder styling */
+.mantine-BlockNoteView-root [data-placeholder]::before,
+[class*="mantine"] [data-placeholder]::before {
+  font-size: 0.8125rem !important;
+  color: #d1d5db !important;
+  font-weight: 300 !important;
+}
+
+/* ============================================
+   Slash Command Menu - More Delicate Styling
+   ============================================ */
+
+/* Scale down the entire menu using transform */
+.bn-suggestion-menu {
+  transform: scale(0.9);
+  transform-origin: top left;
+}
+
+/* Alternative approach: target specific text elements only */
+.bn-suggestion-menu .bn-suggestion-menu-item-title {
+  font-size: 0.875rem !important; /* 14px */
+  line-height: 1.3 !important;
+}
+
+.bn-suggestion-menu .bn-suggestion-menu-item-subtitle {
+  font-size: 0.75rem !important; /* 12px */
+  line-height: 1.3 !important;
+  color: #9ca3af !important;
+}
+
+.bn-suggestion-menu .bn-suggestion-menu-item-badge {
+  font-size: 0.625rem !important; /* 10px */
+  transform: scale(0.9);
+}
+
+.bn-suggestion-menu .bn-suggestion-menu-label {
+  font-size: 0.6875rem !important; /* 11px */
+  color: #9ca3af !important;
+}
+
+/* ============================================
+   Code Block - Notion/Confluence Style
+   ============================================ */
+
+/* Code block container */
+.blocknote-editor [data-content-type="codeBlock"],
+.blocknote-editor .bn-block-content[data-content-type="codeBlock"],
+.bn-editor [data-content-type="codeBlock"] {
+  background-color: #f8f9fa !important;
+  border: 1px solid #e9ecef !important;
+  border-radius: 6px !important;
+  padding: 0 !important;
+  margin: 8px 0 !important;
+  overflow: hidden !important;
+}
+
+/* Code block inner content */
+.blocknote-editor [data-content-type="codeBlock"] pre,
+.blocknote-editor [data-content-type="codeBlock"] code,
+.bn-editor [data-content-type="codeBlock"] pre,
+.bn-editor [data-content-type="codeBlock"] code {
+  background-color: transparent !important;
+  font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace !important;
+  font-size: 0.875rem !important; /* 14px */
+  line-height: 1.6 !important;
+  color: #1f2937 !important;
+  padding: 16px !important;
+  margin: 0 !important;
+  overflow-x: auto !important;
+  white-space: pre !important;
+  word-wrap: normal !important;
+}
+
+/* Remove default borders/backgrounds from nested elements */
+.blocknote-editor [data-content-type="codeBlock"] .bn-inline-content,
+.bn-editor [data-content-type="codeBlock"] .bn-inline-content {
+  background: transparent !important;
+  border: none !important;
+  padding: 16px !important;
+  font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace !important;
+  font-size: 0.875rem !important;
+  line-height: 1.6 !important;
+}
+
+/* Language selector styling (if present) */
+.blocknote-editor [data-content-type="codeBlock"] select,
+.bn-editor [data-content-type="codeBlock"] select {
+  position: absolute !important;
+  top: 8px !important;
+  right: 8px !important;
+  background: #e9ecef !important;
+  border: none !important;
+  border-radius: 4px !important;
+  padding: 4px 8px !important;
+  font-size: 0.75rem !important;
+  color: #6b7280 !important;
+  cursor: pointer !important;
+  outline: none !important;
+}
+
+.blocknote-editor [data-content-type="codeBlock"] select:hover,
+.bn-editor [data-content-type="codeBlock"] select:hover {
+  background: #dee2e6 !important;
+}
+
+/* Inline code styling */
+.blocknote-editor code:not([data-content-type="codeBlock"] code),
+.bn-editor code:not([data-content-type="codeBlock"] code),
+.blocknote-editor .bn-inline-content code,
+.ProseMirror code {
+  background-color: rgba(175, 184, 193, 0.2) !important;
+  border-radius: 4px !important;
+  padding: 2px 6px !important;
+  font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', 'Monaco', 'Consolas', monospace !important;
+  font-size: 0.875em !important;
+  color: #d63384 !important;
+}
+
+/* Code block scrollbar styling */
+.blocknote-editor [data-content-type="codeBlock"]::-webkit-scrollbar,
+.blocknote-editor [data-content-type="codeBlock"] pre::-webkit-scrollbar {
+  height: 6px !important;
+}
+
+.blocknote-editor [data-content-type="codeBlock"]::-webkit-scrollbar-track,
+.blocknote-editor [data-content-type="codeBlock"] pre::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+.blocknote-editor [data-content-type="codeBlock"]::-webkit-scrollbar-thumb,
+.blocknote-editor [data-content-type="codeBlock"] pre::-webkit-scrollbar-thumb {
+  background: #d1d5db !important;
+  border-radius: 3px !important;
+}
+
+.blocknote-editor [data-content-type="codeBlock"]::-webkit-scrollbar-thumb:hover,
+.blocknote-editor [data-content-type="codeBlock"] pre::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af !important;
+}

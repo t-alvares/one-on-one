@@ -1,0 +1,85 @@
+## Prompt 4.11 - Meeting Detail Page (Shared)
+
+```
+Continue building the 1:1 Companion app.
+
+Create the Meeting Detail page accessible by both Leader and IC:
+
+1. Create src/pages/MeetingPage.tsx:
+   - Route: /meetings/:id
+   - Fetch meeting using useMeeting(id) hook
+   - Determine if current user is Leader or IC in this meeting
+   - Show appropriate UI based on role
+
+2. Page Header:
+   - Back button:
+     * If Leader: → /team/:icId
+     * If IC: → /workspace
+   - Date large: "Monday, January 6, 2025"
+   - Time: "10:00 AM"
+   - Title (editable for Leader)
+   - Status badge: SCHEDULED | IN_PROGRESS | COMPLETED
+   - For Leader only: "Complete Meeting" button (if not completed)
+
+3. Two-column layout:
+   - Left column (60%): Agenda (topics)
+   - Right column (40%): Meeting Notes
+
+4. Create src/components/meetings/MeetingAgenda.tsx:
+   - Header: "Agenda" with topic count
+   - List of AgendaItem components
+   - Empty state: "No topics added yet. Drag topics here to build your agenda."
+   - For both users: Can drag their own topics here to add
+   - Drag to reorder topics (updates MeetingTopic.order)
+
+5. Create src/components/meetings/AgendaItem.tsx:
+   - Topic title (clickable to expand)
+   - Label badge
+   - Who added: "👤 You added" or "👥 [Name] added"
+   - Expand/collapse arrow
+   - Expanded view:
+     * Topic content (BlockEditor readonly)
+     * For Leader: "Create Action" button (for later)
+   - Remove button (X):
+     * Only visible for own topics OR if Leader
+     * Calls DELETE /api/v1/meetings/:id/topics/:topicId
+     * Returns topic to BACKLOG
+
+6. Create src/components/meetings/MeetingNotes.tsx:
+   - Header: "Meeting Notes"
+   - BlockNote editor
+   - Both Leader and IC can edit
+   - Auto-save on change (debounced 1 second)
+   - Last edited indicator: "Last edited by [Name] at [time]"
+
+7. Implement Meeting Notes API:
+   
+   Add to src/routes/meetings.ts:
+   
+   - GET /api/v1/meetings/:id/notes
+     * Return meeting notes content (JSON)
+     * Return empty object if no notes yet
+   
+   - PUT /api/v1/meetings/:id/notes
+     * Body: { content: JSON }
+     * Upsert MeetingNote record
+     * Track lastEditedById
+     * Verify user is part of meeting relationship
+
+8. Create src/hooks/useMeetingNotes.ts:
+   - useMeetingNotes(meetingId) - fetch notes
+   - useUpdateMeetingNotes(meetingId) - save notes
+
+9. Add routes to App.tsx:
+   - /meetings/:id → MeetingPage
+
+10. Handle meeting status display:
+    - SCHEDULED: Full editing, blue theme
+    - IN_PROGRESS: Full editing, orange theme
+    - COMPLETED: Read-only, green theme, show completion summary
+    - CANCELLED: Show "This meeting was cancelled" message
+
+Test viewing meeting from both Leader and IC login.
+```
+
+---

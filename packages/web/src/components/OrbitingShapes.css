@@ -1,0 +1,164 @@
+/* OrbitingShapes - Neo-Brutalist Floating Animation */
+/* Gentle floating animation with well-spaced shapes */
+
+.floating-shapes-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 700px;
+  max-height: 700px;
+  overflow: hidden;
+}
+
+/* Base shape styling - Neo-Brutalist */
+.shape {
+  position: absolute;
+  border: 3px solid #000000;
+  box-shadow: 6px 6px 0 #000000;
+}
+
+/* Circle - SVG handles shape+border, CSS handles shadow */
+.shape-circle {
+  position: absolute;
+  top: 60%;
+  left: 5%;
+
+  /* Size */
+  width: 186px;
+  height: 186px;
+
+  /* The Hard Black Shadow */
+  filter: drop-shadow(5px 5px 0 #000);
+
+  animation: float1 6s ease-in-out infinite;
+}
+
+/* Square - SVG handles shape+border, CSS handles shadow */
+.shape-square {
+  position: absolute;
+  top: 5%;
+  left: 15%;
+
+  /* Size */
+  width: 195px;
+  height: 195px;
+
+  /* The Hard Black Shadow */
+  filter: drop-shadow(5px 5px 0 #000);
+
+  animation: float2 7s ease-in-out infinite;
+}
+
+/* Rectangle - SVG handles shape+border, CSS handles shadow */
+.shape-rectangle {
+  position: absolute;
+  top: 58%;
+  left: 50%;
+
+  /* Size */
+  width: 236px;
+  height: 138px;
+
+  /* The Hard Black Shadow */
+  filter: drop-shadow(5px 5px 0 #000);
+
+  animation: float3 8s ease-in-out infinite;
+}
+
+/* Triangle - SVG handles shape+border, CSS handles shadow */
+.shape-triangle {
+  position: absolute;
+  top: 6%;
+  left: 55%;
+
+  /* Size */
+  width: 200px;
+  height: 170px;
+
+  /* The Hard Black Shadow */
+  filter: drop-shadow(5px 5px 0 #000);
+
+  animation: float4 5s ease-in-out infinite;
+}
+
+/* Floating animations - gentle up/down movement */
+@keyframes float1 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(3deg);
+  }
+}
+
+@keyframes float2 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-25px) rotate(-4deg);
+  }
+}
+
+@keyframes float3 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(2deg);
+  }
+}
+
+@keyframes float4 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-22px) rotate(-3deg);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1400px) {
+  .shape-circle {
+    width: 150px;
+    height: 150px;
+  }
+
+  .shape-square {
+    width: 160px;
+    height: 160px;
+  }
+
+  .shape-rectangle {
+    width: 195px;
+    height: 114px;
+  }
+
+  .shape-triangle {
+    width: 165px;
+    height: 140px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .shape-circle {
+    width: 120px;
+    height: 120px;
+  }
+
+  .shape-square {
+    width: 130px;
+    height: 130px;
+  }
+
+  .shape-rectangle {
+    width: 160px;
+    height: 94px;
+  }
+
+  .shape-triangle {
+    width: 135px;
+    height: 115px;
+  }
+}
